@@ -63,10 +63,10 @@ export default class GuessInput extends Component {
     let word = this.letter1 + this.letter2 + this.letter3 + this.letter4;
     this.props.handleAddGuessedWords(word);
     document.getElementById("guess-input-form").reset();
-    this.letter1 = "";
-    this.letter2 = "";
-    this.letter3 = "";
-    this.letter4 = "";
+    this.letter1 = null;
+    this.letter2 = null;
+    this.letter3 = null;
+    this.letter4 = null;
     this.setState({ guessButtonDisabled: true });
   };
 
