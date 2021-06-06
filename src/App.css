@@ -1,0 +1,78 @@
+.gamecontainer {
+  width: 100%;
+  max-width: 22rem;
+  padding: 2rem 1.5rem;
+  margin: 0 auto;
+  z-index: 2;
+  min-height: 100vh;
+  /* display: flex; */
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: flex-start;
+}
+
+.flex1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.letter1,
+.letter2,
+.letter3,
+.letter4 {
+  border: none;
+  border-bottom: 2px solid;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+  flex: 1 1 15%;
+  max-width: 1em;
+  margin-right: 0.1em;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  background: transparent;
+  z-index: 2;
+  padding: 0;
+}
+
+.guessleft {
+  font-style: italic;
+}
+
+.guessedWordButton {
+  border: none;
+  border-right: 2px dotted grey;
+  border-radius: 0;
+  color: inherit;
+  display: block;
+  flex: 1 1 15%;
+  min-width: 1.75em;
+  max-width: 1.5em;
+  margin-right: 0.1em;
+  padding: 5px;
+  /* text-decoration: line-through;
+  color: grey; */
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  background: transparent;
+  z-index: 0;
+  padding: 0;
+}
+
+.guessedWordBorder {
+  border-bottom: 2px dotted grey;
+}
+
+.guessedWordResult {
+  font-style: bold;
+  font-weight: bolder;
+  color: red;
+}
