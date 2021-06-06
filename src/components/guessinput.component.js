@@ -67,6 +67,7 @@ export default class GuessInput extends Component {
     this.letter2 = "";
     this.letter3 = "";
     this.letter4 = "";
+    this.setState({ guessButtonDisabled: true });
   };
 
   render() {
