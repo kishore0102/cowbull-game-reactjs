@@ -26,6 +26,7 @@ export default class Game extends Component {
   };
 
   checkForStringInJsonData = (e) => {
+    console.log("checking for -> " + e);
     if (this.state.dataMap.has(e)) {
       return true;
     } else {

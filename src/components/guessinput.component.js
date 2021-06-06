@@ -37,7 +37,6 @@ export default class GuessInput extends Component {
       ) {
         this.props.handleInputErrorMessage("");
         this.setState({ guessButtonDisabled: false });
-        document.getElementById("guessbutton").focus();
       }
     } else {
       this.setState({ guessButtonDisabled: true });
@@ -81,7 +80,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onChange={this.handleInput1}
+            onKeyUp={this.handleInput1}
           />
           <input
             className="letter2"
@@ -90,7 +89,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onChange={this.handleInput2}
+            onKeyUp={this.handleInput2}
           />
           <input
             className="letter3"
@@ -99,7 +98,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onChange={this.handleInput3}
+            onKeyUp={this.handleInput3}
           />
           <input
             className="letter4"
@@ -108,7 +107,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onChange={this.handleInput4}
+            onKeyUp={this.handleInput4}
           />
           <button
             type="button"
