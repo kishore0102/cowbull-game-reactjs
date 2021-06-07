@@ -46,7 +46,6 @@ export default class GuessLeft extends Component {
 
     return (
       <React.Fragment>
-        {/* <p className="guessleft">Guesses left: </p> */}
         <br />
         {countview}
       </React.Fragment>

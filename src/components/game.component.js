@@ -6,31 +6,29 @@ import jsondata from "./input.json";
 
 export default class Game extends Component {
   state = {
-    dataMap: {},
     inputErrorMessage: "",
     wordNeedsToBeGuessed: "",
     guessRemaining: 10,
     guessedWords: [],
+    clueWord: "",
   };
 
   componentDidMount = () => {
-    let dataMap = new Map();
     let randomNumber = Math.floor(Math.random() * jsondata.length);
     for (let i = 0; i < jsondata.length; i++) {
       if (i === randomNumber) {
         this.setState({ wordNeedsToBeGuessed: jsondata[i] });
       }
-      dataMap.set(jsondata[i], "1");
     }
-    this.setState({ dataMap });
   };
 
   checkForStringInJsonData = (e) => {
-    if (this.state.dataMap.has(e.toLowerCase())) {
-      return true;
-    } else {
-      return false;
+    for (let i = 0; i < jsondata.length; i++) {
+      if (jsondata[i] === e.toLowerCase()) {
+        return true;
+      }
     }
+    return false;
   };
 
   handleInputErrorMessage = (e) => {
@@ -50,8 +48,31 @@ export default class Game extends Component {
     }
 
     if (this.state.guessRemaining === 1) {
-      alert("You have exhaused all your tries. Better luck next time!");
+      alert(
+        "You have exhaused all your tries. Better luck next time!\nAnswer is " +
+          this.state.wordNeedsToBeGuessed
+      );
       window.location.replace("/");
+    }
+  };
+
+  handleGiveUpButton = (e) => {
+    if (window.confirm("Are you sure to give up?")) {
+      alert("Too bad mate! Answer is " + this.state.wordNeedsToBeGuessed);
+      window.location.replace("/");
+    }
+  };
+
+  handleGiveClueButton = (e) => {
+    let word = this.state.wordNeedsToBeGuessed;
+    let clueWord = this.state.clueWord;
+    if (!clueWord) {
+      let randomNumber = Math.floor(Math.random() * 3);
+      for (let i = 0; i < 4; i++) {
+        if (i === randomNumber) {
+          this.setState({ clueWord: word[i] });
+        }
+      }
     }
   };
 
@@ -60,6 +81,36 @@ export default class Game extends Component {
 
     if (this.state.inputErrorMessage !== "") {
       inputerror = <p>{this.state.inputErrorMessage}</p>;
+    }
+
+    let clueButton = "";
+    let clueSection = "";
+
+    if (!this.state.clueWord) {
+      clueButton = (
+        <button
+          type="button"
+          id="guessbutton"
+          className="btn btn-info"
+          disabled={this.state.clueWord ? "disabled" : ""}
+          onClick={this.handleGiveClueButton}
+        >
+          Give me a clue
+        </button>
+      );
+    }
+
+    if (this.state.clueWord) {
+      clueSection = (
+        <p>
+          <span style={{ color: "black", fontStyle: "italic" }}>
+            <b>Hint:</b> The words includes the letter
+          </span>
+          <span style={{ color: "red", fontStyle: "strong" }}>
+            <b>&nbsp;'{this.state.clueWord.toUpperCase()}'&nbsp;</b>
+          </span>
+        </p>
+      );
     }
 
     return (
@@ -91,6 +142,22 @@ export default class Game extends Component {
               wordNeedsToBeGuessed={this.state.wordNeedsToBeGuessed}
             />
           </div>
+          <br />
+          <br />
+          <div className="d-flex justify-content-around">
+            <button
+              type="button"
+              id="guessbutton"
+              className="btn btn-secondary"
+              onClick={this.handleGiveUpButton}
+            >
+              Give up!
+            </button>
+            {clueButton}
+          </div>
+          <br />
+          <br />
+          {clueSection}
         </div>
       </React.Fragment>
     );
