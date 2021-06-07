@@ -26,35 +26,57 @@ export default class GuessInput extends Component {
     );
   };
 
+  checkForAlphabets = (e) => {
+    if (
+      (e.keyCode > 64 && e.keyCode < 91) ||
+      (e.keyCode > 96 && e.keyCode < 123)
+    )
+      return true;
+    else return false;
+  };
+
   handleKeyUp1 = (e) => {
-    this.handleInput1(e);
-    // this.displayLetters();
+    console.log("alphabets check = ", this.checkForAlphabets(e));
+    if (this.checkForAlphabets(e)) {
+      this.handleInput1(e);
+    } else {
+      document.getElementById("letter1").value = "";
+    }
   };
 
   handleKeyUp2 = (e) => {
-    let letter2backup = this.letter2;
-    this.handleInput2(e);
-    // this.displayLetters();
-    if (e.keyCode === 8 && letter2backup.length === 0) {
-      document.getElementById("letter1").focus();
+    if (this.checkForAlphabets(e)) {
+      let letter2backup = this.letter2;
+      this.handleInput2(e);
+      if (e.keyCode === 8 && letter2backup.length === 0) {
+        document.getElementById("letter1").focus();
+      }
+    } else {
+      document.getElementById("letter2").value = "";
     }
   };
 
   handleKeyUp3 = (e) => {
-    let letter3backup = this.letter3;
-    this.handleInput3(e);
-    // this.displayLetters();
-    if (e.keyCode === 8 && letter3backup.length === 0) {
-      document.getElementById("letter2").focus();
+    if (this.checkForAlphabets(e)) {
+      let letter3backup = this.letter3;
+      this.handleInput3(e);
+      if (e.keyCode === 8 && letter3backup.length === 0) {
+        document.getElementById("letter2").focus();
+      }
+    } else {
+      document.getElementById("letter3").value = "";
     }
   };
 
   handleKeyUp4 = (e) => {
-    let letter4backup = this.letter4;
-    this.handleInput4(e);
-    // this.displayLetters();
-    if (e.keyCode === 8 && letter4backup.length === 0) {
-      document.getElementById("letter3").focus();
+    if (this.checkForAlphabets(e)) {
+      let letter4backup = this.letter4;
+      this.handleInput4(e);
+      if (e.keyCode === 8 && letter4backup.length === 0) {
+        document.getElementById("letter3").focus();
+      }
+    } else {
+      document.getElementById("letter4").value = "";
     }
   };
 
@@ -140,6 +162,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
+            pattern="[A-Za-z]{1}"
             onKeyUp={this.handleKeyUp1}
           />
           <input
@@ -149,6 +172,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
+            pattern="[A-Za-z]{1}"
             onKeyUp={this.handleKeyUp2}
           />
           <input
@@ -158,6 +182,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
+            pattern="[A-Za-z]{1}"
             onKeyUp={this.handleKeyUp3}
           />
           <input
@@ -167,6 +192,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
+            pattern="[A-Za-z]{1}"
             onKeyUp={this.handleKeyUp4}
           />
           <button
