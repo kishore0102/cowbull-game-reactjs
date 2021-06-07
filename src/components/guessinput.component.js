@@ -109,7 +109,6 @@ export default class GuessInput extends Component {
   };
 
   handleInput4 = (e) => {
-    console.log("handle input 4", e);
     if (this.checkForAlphabets(e.target.value)) {
       this.setState({ letter4: e.target.value[0] }, () => {
         this.handleAllInputs();
@@ -122,8 +121,6 @@ export default class GuessInput extends Component {
   };
 
   handleOnKey1 = (e) => {
-    console.log("handleOnKey1", e.keyCode);
-    console.log("letter 1 length = ", this.state.letter1.length);
     if (e.keyCode === 8 && this.state.letter2.length === 1) {
       this.setState({ letter1: "" }, () => {
         document.getElementById("letter1").focus();
@@ -132,8 +129,6 @@ export default class GuessInput extends Component {
   };
 
   handleOnKey2 = (e) => {
-    console.log("handleOnKey2", e.keyCode);
-    console.log("letter 2 length = ", this.state.letter2.length);
     if (e.keyCode === 8 && this.state.letter2.length === 1) {
       this.setState({ letter2: "" }, () => {
         document.getElementById("letter2").focus();
@@ -147,8 +142,6 @@ export default class GuessInput extends Component {
   };
 
   handleOnKey3 = (e) => {
-    console.log("handleOnKey3", e.keyCode);
-    console.log("letter 3 length = ", this.state.letter3.length);
     if (e.keyCode === 8 && this.state.letter3.length === 1) {
       this.setState({ letter3: "" }, () => {
         document.getElementById("letter3").focus();
@@ -162,9 +155,6 @@ export default class GuessInput extends Component {
   };
 
   handleOnKey4 = (e) => {
-    console.log("handleOnKey4", e.keyCode);
-    console.log("letter 4 length = ", this.state.letter4.length);
-    console.log(e.target);
     if (e.keyCode === 8 && this.state.letter4.length === 1) {
       this.setState({ letter4: "" }, () => {
         document.getElementById("letter4").focus();

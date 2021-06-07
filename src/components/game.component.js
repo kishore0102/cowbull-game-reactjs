@@ -37,12 +37,12 @@ export default class Game extends Component {
 
   handleAddGuessedWords = (e) => {
     let guessedWords = this.state.guessedWords;
-    guessedWords.push(e);
+    guessedWords.push(e.toLowerCase());
     this.setState({ guessedWords });
     let guessRemaining = this.state.guessRemaining - 1;
     this.setState({ guessRemaining });
 
-    if (e === this.state.wordNeedsToBeGuessed) {
+    if (e.toLowerCase() === this.state.wordNeedsToBeGuessed) {
       alert("Congratulations! You have guessed the word.");
       window.location.replace("/");
     }
