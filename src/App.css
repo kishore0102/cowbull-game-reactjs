@@ -40,6 +40,14 @@
   padding: 0;
 }
 
+.letter1:focus,
+.letter2:focus,
+.letter3:focus,
+.letter4:focus {
+  outline: 0px;
+  border-bottom: 5px solid;
+}
+
 .guessleft {
   font-style: italic;
 }
@@ -55,8 +63,6 @@
   max-width: 1.5em;
   margin-right: 0.1em;
   padding: 5px;
-  /* text-decoration: line-through;
-  color: grey; */
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;

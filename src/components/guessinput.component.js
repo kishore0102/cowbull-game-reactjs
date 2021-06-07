@@ -5,30 +5,89 @@ export default class GuessInput extends Component {
     guessButtonDisabled: true,
   };
 
+  componentDidMount = (e) => {
+    this.letter1 = "";
+    this.letter2 = "";
+    this.letter3 = "";
+    this.letter4 = "";
+    document.getElementById("letter1").focus();
+  };
+
+  displayLetters = () => {
+    console.log(
+      "letters = " +
+        this.letter1 +
+        " " +
+        this.letter2 +
+        " " +
+        this.letter3 +
+        " " +
+        this.letter4
+    );
+  };
+
+  handleKeyUp1 = (e) => {
+    this.handleInput1(e);
+    // this.displayLetters();
+  };
+
+  handleKeyUp2 = (e) => {
+    let letter2backup = this.letter2;
+    this.handleInput2(e);
+    // this.displayLetters();
+    if (e.keyCode === 8 && letter2backup.length === 0) {
+      document.getElementById("letter1").focus();
+    }
+  };
+
+  handleKeyUp3 = (e) => {
+    let letter3backup = this.letter3;
+    this.handleInput3(e);
+    // this.displayLetters();
+    if (e.keyCode === 8 && letter3backup.length === 0) {
+      document.getElementById("letter2").focus();
+    }
+  };
+
+  handleKeyUp4 = (e) => {
+    let letter4backup = this.letter4;
+    this.handleInput4(e);
+    // this.displayLetters();
+    if (e.keyCode === 8 && letter4backup.length === 0) {
+      document.getElementById("letter3").focus();
+    }
+  };
+
   handleInput1 = (e) => {
     this.letter1 = e.target.value;
     this.handleInputChange();
-    document.getElementById("letter2").focus();
+    if (this.letter1.length > 0 && e.keyCode !== 8)
+      document.getElementById("letter2").focus();
   };
 
   handleInput2 = (e) => {
     this.letter2 = e.target.value;
     this.handleInputChange();
-    document.getElementById("letter3").focus();
+    if (this.letter2.length > 0 && e.keyCode !== 8)
+      document.getElementById("letter3").focus();
   };
 
   handleInput3 = (e) => {
     this.letter3 = e.target.value;
     this.handleInputChange();
-    document.getElementById("letter4").focus();
+    if (this.letter3.length > 0 && e.keyCode !== 8)
+      document.getElementById("letter4").focus();
   };
 
   handleInput4 = (e) => {
     this.letter4 = e.target.value;
     this.handleInputChange();
+    if (this.letter3.length > 0 && e.keyCode !== 8)
+      document.getElementById("guessbutton").focus();
   };
 
   handleInputChange = (e) => {
+    this.props.handleInputErrorMessage("");
     if (this.letter1 && this.letter2 && this.letter3 && this.letter4) {
       let word = this.letter1 + this.letter2 + this.letter3 + this.letter4;
       if (
@@ -62,11 +121,12 @@ export default class GuessInput extends Component {
     let word = this.letter1 + this.letter2 + this.letter3 + this.letter4;
     this.props.handleAddGuessedWords(word);
     document.getElementById("guess-input-form").reset();
-    this.letter1 = null;
-    this.letter2 = null;
-    this.letter3 = null;
-    this.letter4 = null;
+    this.letter1 = "";
+    this.letter2 = "";
+    this.letter3 = "";
+    this.letter4 = "";
     this.setState({ guessButtonDisabled: true });
+    document.getElementById("letter1").focus();
   };
 
   render() {
@@ -80,7 +140,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onKeyUp={this.handleInput1}
+            onKeyUp={this.handleKeyUp1}
           />
           <input
             className="letter2"
@@ -89,7 +149,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onKeyUp={this.handleInput2}
+            onKeyUp={this.handleKeyUp2}
           />
           <input
             className="letter3"
@@ -98,7 +158,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onKeyUp={this.handleInput3}
+            onKeyUp={this.handleKeyUp3}
           />
           <input
             className="letter4"
@@ -107,7 +167,7 @@ export default class GuessInput extends Component {
             size="1"
             maxLength="1"
             required
-            onKeyUp={this.handleInput4}
+            onKeyUp={this.handleKeyUp4}
           />
           <button
             type="button"

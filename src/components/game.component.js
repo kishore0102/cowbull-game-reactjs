@@ -13,7 +13,7 @@ export default class Game extends Component {
     guessedWords: [],
   };
 
-  componentDidMount = (e) => {
+  componentDidMount = () => {
     let dataMap = new Map();
     let randomNumber = Math.floor(Math.random() * jsondata.length);
     for (let i = 0; i < jsondata.length; i++) {
